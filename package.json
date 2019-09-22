@@ -1,0 +1,37 @@
+{
+  "name": "spi-bit-bang",
+  "version": "0.1.0-dev",
+  "description": "Implement an SPI interface by bit banging GPIO channels on a Raspberry Pi or similar.",
+  "main": "src/index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "test": "npm run lint && npm run test:unit",
+    "test:coverage": "jest test/unit --coverage",
+    "test:unit": "jest test/unit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paulbloomfield-uk/spi-bit-bang.git"
+  },
+  "keywords": [
+    "spi",
+    "bit-bang",
+    "raspberry",
+    "raspi",
+    "rpi",
+    "pi"
+  ],
+  "author": "pbuk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/paulbloomfield-uk/spi-bit-bang/issues"
+  },
+  "homepage": "https://github.com/paulbloomfield-uk/spi-bit-bang#readme",
+  "devDependencies": {
+    "eslint": "^6.4.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^22.17.0",
+    "jest": "^24.9.0"
+  }
+}
