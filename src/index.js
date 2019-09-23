@@ -1,5 +1,9 @@
 // src/index.js
 
+// Logic states;
+const HIGH = 1;
+const LOW = 0;
+
 class SpiBitBang {
   /**
    * Constructor.
