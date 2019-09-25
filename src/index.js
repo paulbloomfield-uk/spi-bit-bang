@@ -45,7 +45,7 @@ class SpiBitBang {
     this.chipSelect = chipSelect;
   }
 
-  writeSync(word) {
+  async write(data) {
     const write = (bit) => {
       // Currently only mode 0 supported.
       this.clock.writeSync(LOW);
@@ -57,9 +57,9 @@ class SpiBitBang {
     this.chipSelect.writeSync(LOW);
 
     // Write each byte.
-    for (let i = 0; i < word.length; i += 1) {
+    for (let i = 0; i < data.length; i += 1) {
       // Currently only MSB first implemented.
-      const byte = word[i];
+      const byte = data[i];
       write(byte & 128);
       write(byte & 64);
       write(byte & 32);
@@ -72,6 +72,38 @@ class SpiBitBang {
 
     // Latch the data.
     this.chipSelect.writeSync(HIGH);
+    return data.length;
+  }
+
+  writeSync(data) {
+    const write = (bit) => {
+      // Currently only mode 0 supported.
+      this.clock.writeSync(LOW);
+      this.mosi.writeSync((bit && 1) || 0);
+      this.clock.writeSync(HIGH);
+    };
+
+    // Select the chip.
+    this.chipSelect.writeSync(LOW);
+
+    // Write each byte.
+    for (let i = 0; i < data.length; i += 1) {
+      // Currently only MSB first implemented.
+      const byte = data[i];
+      write(byte & 128);
+      write(byte & 64);
+      write(byte & 32);
+      write(byte & 16);
+      write(byte & 8);
+      write(byte & 4);
+      write(byte & 2);
+      write(byte & 1);
+    }
+
+    // Latch the data.
+    this.chipSelect.writeSync(HIGH);
+    return data.length;
+
   }
 }
 
